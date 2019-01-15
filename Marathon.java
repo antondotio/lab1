@@ -23,7 +23,7 @@ public class Marathon{
         
         int index = shortestTime(times);
 
-        System.out.println("The fastest runner was " + names[index] + " and their time was " + times[index]);
+        System.out.println("The fastest runner was " + names[index] + " and their time was " + times[index] + " minutes.");
 
     }
 }
