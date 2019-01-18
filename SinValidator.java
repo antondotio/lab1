@@ -45,11 +45,26 @@ private int sumDigit(int x)
 	
 	public boolean validateSin()
 	{
-		
-		// THIS METHOD DOESN'T WORK. STUDENTS ARE EXPECTED TO COMPLTETE THIS METHOD
+		int sumStepOne = SIN[0] + SIN[2] + SIN[4] + SIN[6];
+		int sumOfDigits = 0;
+		int [] product = new int[4];
+		int [] digitSum = new int[4];
+		int j = 0;
 
-        
-		return false;
+		for(int i = 1; i <= 8; i += 2){
+			product[j] = SIN[i] * 2;
+			digitSum[j] = sumDigit(product[j]);
+			sumOfDigits += digitSum[j];
+ 			j++;
+		 }
+		 
+		int sumStepFive = sumStepOne + sumOfDigits;
+		int lastDigit = 10 - (sumStepFive % 10);
+
+		if(lastDigit == SIN[8])
+			return true;
+		else
+		 	return false;
 		
 	}
 
@@ -60,7 +75,7 @@ private int sumDigit(int x)
 		Scanner scan = new Scanner(System.in);	
 		while (true)
 		{
-			System.out.println("Please enter your 10 digit social insurance number"
+			System.out.println("Please enter your 9 digit social insurance number"
 					+ " or enter quit to terminate the program: ");
 			sin = scan.nextLine();
 			if(sin.toUpperCase().equals("QUIT"))
