@@ -1,13 +1,14 @@
 import java.util.Scanner;
+import java.util.*;
 
 public class Marathon2{
 
-    public static int findFastestRunner(double [] time){
+    public static int findFastestRunner(ArrayList<Double> times){
         int index = 0;
-        double shortest = time[0];
-        for(int i = 1; i < time.length; i++){
-            if(time[i] <= time[i-1] && time[i] <= shortest){
-                shortest = time[i];
+        double shortest = times.get(0);
+        for(int i = 1; i < times.size(); i++){
+            if(times.get(i) <= times.get(i-1) && times.get(i) <= shortest){
+                shortest = times.get(i);
                 index = i;
             }
         }
@@ -15,11 +16,8 @@ public class Marathon2{
     }
     
     public static void main(String[] args) {
-        // Define two array lists here to store the names and the running times
-        // Read user input
-        String[] name;
-        double[] time;
-        int i = 0;
+        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<Double> times = new ArrayList<Double>();
         String sin;
         Scanner scan = new Scanner(System.in);
         while (true) {
@@ -27,18 +25,16 @@ public class Marathon2{
             sin = scan.nextLine();
             if (sin.toUpperCase().equals("QUIT"))
                 break;
-            // Add the name to your ArrayList
-            name[i] = sin;
+            names.add(sin);
             System.out.println("Please enter the running time of the participant");
             sin = scan.nextLine();
-            // Add the running time to your array list
-            time[i] = Double.parseDouble(sin);
-            i++;
+            Double time = Double.parseDouble(sin);
+            times.add(time);
         }
-        // Call the function findFastestRunner and pass the running times array list to
-        // it
-        int index = findFastestRunner(time);
-        // Print the name of the fastestrunner to the console
-        System.out.println("The fastest runner was " + name[index] + " and their time was " + time[index] + " minutes.");
+       
+        int index = findFastestRunner(times);
+        System.out.println("The fastest runner was " + names.get(index) + " and their time was " + times.get(index) + " minutes.");
+
+        scan.close();
     }
 }
